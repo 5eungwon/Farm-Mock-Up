@@ -24,7 +24,7 @@ export default function Home() {
     <>
       {/* Mobile: Full screen app */}
       <div className="md:hidden relative w-full h-dvh bg-background overflow-hidden">
-        <div className="h-full overflow-hidden">
+        <div className="h-full">
           {activeTab === 'explore' && <ExploreTab />}
           {activeTab === 'capture' && <CaptureTab />}
           {activeTab === 'farm' && <FarmTab />}
