@@ -24,4 +24,4 @@ export interface FarmState {
   maxExp: number
 }
 
-export type TabType = 'discover' | 'capture' | 'farm'
+export type TabType = 'explore' | 'capture' | 'farm' | 'encyclopedia' | 'shop'

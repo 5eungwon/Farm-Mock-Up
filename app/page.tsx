@@ -3,25 +3,34 @@
 import { useState } from 'react'
 import type { TabType } from '@/lib/types'
 import { BottomNavigation } from '@/components/bottom-navigation'
-import { DiscoverTab } from '@/components/discover-tab'
+import { ExploreTab } from '@/components/explore-tab'
 import { CaptureTab } from '@/components/capture-tab'
 import { FarmTab } from '@/components/farm-tab'
+import { EncyclopediaTab } from '@/components/encyclopedia-tab'
+
+function PlaceholderTab({ label }: { label: string }) {
+  return (
+    <div className="flex flex-col h-full items-center justify-center text-muted-foreground">
+      <p className="text-lg font-medium">{label}</p>
+      <p className="text-sm mt-1">준비 중입니다</p>
+    </div>
+  )
+}
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<TabType>('farm')
+  const [activeTab, setActiveTab] = useState<TabType>('explore')
 
   return (
     <>
       {/* Mobile: Full screen app */}
       <div className="md:hidden relative w-full h-dvh bg-background overflow-hidden">
-        {/* App Content */}
         <div className="h-full overflow-hidden">
-          {activeTab === 'discover' && <DiscoverTab />}
+          {activeTab === 'explore' && <ExploreTab />}
           {activeTab === 'capture' && <CaptureTab />}
           {activeTab === 'farm' && <FarmTab />}
+          {activeTab === 'encyclopedia' && <EncyclopediaTab />}
+          {activeTab === 'shop' && <PlaceholderTab label="상점" />}
         </div>
-        
-        {/* Bottom Navigation */}
         <BottomNavigation activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
 
@@ -45,20 +54,22 @@ export default function Home() {
               </svg>
             </div>
           </div>
-          
+
           {/* Dynamic Island */}
           <div className="absolute top-2 left-1/2 -translate-x-1/2 z-50 w-28 h-7 bg-black rounded-full" />
-          
+
           {/* App Content */}
           <div className="h-full overflow-hidden pt-11">
-            {activeTab === 'discover' && <DiscoverTab />}
+            {activeTab === 'explore' && <ExploreTab />}
             {activeTab === 'capture' && <CaptureTab />}
             {activeTab === 'farm' && <FarmTab />}
+            {activeTab === 'encyclopedia' && <EncyclopediaTab />}
+            {activeTab === 'shop' && <PlaceholderTab label="상점" />}
           </div>
-          
+
           {/* Bottom Navigation */}
           <BottomNavigation activeTab={activeTab} onTabChange={setActiveTab} />
-          
+
           {/* Home Indicator */}
           <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-32 h-1 bg-foreground/30 rounded-full" />
         </div>
